@@ -9,16 +9,24 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     :root {
-      --primary-color: #dc2626;
-      --primary-dark: #b91c1c;
-      --secondary-color: #1f2937;
+      --primary-color: #1e40af;
+      --primary-dark: #1e3a8a;
+      --secondary-color: #0f172a;
       --accent-color: #3b82f6;
-      --text-dark: #1f2937;
-      --text-light: #6b7280;
+      --accent-light: #60a5fa;
+      --text-dark: #0f172a;
+      --text-light: #64748b;
       --bg-light: #f8fafc;
       --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
       --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
       --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --gradient-primary: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+      --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     }
 
     * {
@@ -40,12 +48,16 @@
 
     /* Header Styles */
     header {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      background: var(--gradient-dark);
       color: white;
-      padding: 100px 20px 80px;
+      padding: 120px 20px 100px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     header::before {
@@ -55,42 +67,104 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3') center/cover;
-      opacity: 0.1;
+      background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3') center/cover;
+      opacity: 0.08;
       z-index: 1;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      z-index: 2;
     }
 
     header .content {
       position: relative;
-      z-index: 2;
-      max-width: 800px;
+      z-index: 3;
+      max-width: 900px;
       margin: 0 auto;
     }
 
     header h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-size: clamp(3rem, 6vw, 5rem);
       font-weight: 700;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin-bottom: 25px;
+      background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
       animation: fadeInUp 1s ease-out;
+      letter-spacing: -0.02em;
     }
 
-    header p {
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
-      font-weight: 300;
-      opacity: 0.95;
+    header .subtitle {
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 40px;
       animation: fadeInUp 1s ease-out 0.2s both;
+      color: #cbd5e1;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .cta-primary, .cta-secondary {
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cta-primary {
+      background: var(--gradient-primary);
+      color: white;
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .cta-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+    }
+
+    .cta-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .cta-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
     }
 
     /* Navigation */
     nav {
       background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 15px 0;
+      backdrop-filter: blur(15px);
+      padding: 20px 0;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid var(--gray-200);
     }
 
     nav .nav-container {
@@ -99,7 +173,7 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 15px;
       padding: 0 20px;
     }
 
@@ -107,49 +181,71 @@
       color: var(--text-dark);
       text-decoration: none;
       font-weight: 500;
-      padding: 10px 20px;
-      border-radius: 25px;
+      padding: 12px 24px;
+      border-radius: 30px;
       transition: all 0.3s ease;
       position: relative;
+      font-size: 0.95rem;
     }
 
     nav a:hover {
-      background: var(--primary-color);
+      background: var(--gradient-primary);
       color: white;
       transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
     }
 
     /* Section Styles */
     section {
-      padding: 80px 20px;
+      padding: 100px 20px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
     h2 {
-      font-size: clamp(2rem, 4vw, 2.5rem);
-      font-weight: 600;
+      font-size: clamp(2.2rem, 4vw, 2.8rem);
+      font-weight: 700;
       color: var(--text-dark);
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
       position: relative;
+      letter-spacing: -0.02em;
     }
 
     h2::after {
       content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: -15px;
       left: 50%;
       transform: translateX(-50%);
-      width: 60px;
+      width: 80px;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      background: var(--gradient-primary);
       border-radius: 2px;
     }
 
     /* About Section */
+    #sobre {
+      background: var(--white);
+      border-radius: 30px;
+      margin: 60px auto;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #sobre::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+    }
+
     #sobre p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       text-align: center;
       max-width: 800px;
       margin: 0 auto;
@@ -160,20 +256,21 @@
     /* Plans Section */
     .planos {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 35px;
+      margin-top: 60px;
     }
 
     .plano {
       background: var(--white);
-      padding: 40px 30px;
-      border-radius: 20px;
+      padding: 45px 35px;
+      border-radius: 25px;
       box-shadow: var(--shadow);
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
+      border: 1px solid var(--gray-200);
     }
 
     .plano::before {
@@ -182,84 +279,126 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      height: 5px;
+      background: var(--gradient-primary);
     }
 
     .plano:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+      border-color: var(--accent-light);
     }
 
     .plano h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-size: 1.6rem;
+      font-weight: 700;
       color: var(--text-dark);
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .plano .price {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: 20px;
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 25px;
     }
 
     .plano .features {
       list-style: none;
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
 
     .plano .features li {
-      padding: 8px 0;
+      padding: 10px 0;
       color: var(--text-light);
+      font-size: 1rem;
     }
 
     .plano .features li::before {
       content: '✓';
-      color: var(--primary-color);
+      color: var(--accent-color);
       font-weight: bold;
-      margin-right: 10px;
+      margin-right: 12px;
+      font-size: 1.1rem;
+    }
+
+    .plan-button {
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .plan-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
     }
 
     /* Services Section */
     #servicos {
-      background: var(--white);
-      border-radius: 20px;
-      margin: 40px auto;
-      box-shadow: var(--shadow);
+      background: var(--gray-50);
+      border-radius: 30px;
+      margin: 60px auto;
+      position: relative;
     }
 
     #servicos ul {
       list-style: none;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
+      display: grid;
+      gap: 25px;
     }
 
     #servicos li {
-      padding: 20px 0;
+      background: var(--white);
+      padding: 25px;
+      border-radius: 15px;
       font-size: 1.1rem;
-      border-bottom: 1px solid #e5e7eb;
       display: flex;
       align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
     }
 
-    #servicos li:last-child {
-      border-bottom: none;
+    #servicos li:hover {
+      transform: translateX(10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
 
     #servicos li i {
-      color: var(--primary-color);
-      margin-right: 15px;
-      font-size: 1.2rem;
+      color: var(--accent-color);
+      margin-right: 20px;
+      font-size: 1.4rem;
+      width: 30px;
     }
 
     /* Form Section */
     #formulario {
       background: var(--white);
-      border-radius: 20px;
-      margin: 40px auto;
+      border-radius: 30px;
+      margin: 60px auto;
       box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #formulario::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--gradient-primary);
     }
 
     .formulario {
@@ -268,52 +407,58 @@
     }
 
     .form-group {
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
 
     .formulario label {
       display: block;
-      margin-bottom: 8px;
-      font-weight: 500;
+      margin-bottom: 10px;
+      font-weight: 600;
       color: var(--text-dark);
+      font-size: 1rem;
     }
 
     .formulario input,
     .formulario select {
       width: 100%;
-      padding: 15px;
-      border: 2px solid #e5e7eb;
-      border-radius: 10px;
+      padding: 18px;
+      border: 2px solid var(--gray-200);
+      border-radius: 15px;
       font-size: 1rem;
       transition: all 0.3s ease;
-      background: var(--bg-light);
+      background: var(--gray-50);
+      font-family: inherit;
     }
 
     .formulario input:focus,
     .formulario select:focus {
       outline: none;
-      border-color: var(--primary-color);
+      border-color: var(--accent-color);
       background: var(--white);
-      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
     }
 
     .formulario button {
       width: 100%;
-      padding: 18px;
-      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      padding: 20px;
+      background: var(--gradient-primary);
       color: white;
       border: none;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      font-weight: 600;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-top: 10px;
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
     }
 
     .formulario button:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
     }
 
     /* Contact Section */
@@ -323,38 +468,45 @@
 
     .contact-info {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+      margin-top: 50px;
     }
 
     .contact-item {
       background: var(--white);
-      padding: 30px;
-      border-radius: 15px;
+      padding: 40px 30px;
+      border-radius: 20px;
       box-shadow: var(--shadow);
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      border: 1px solid var(--gray-200);
     }
 
     .contact-item:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
 
     .contact-item i {
-      font-size: 2rem;
-      color: var(--primary-color);
-      margin-bottom: 15px;
+      font-size: 2.5rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
     }
 
     .contact-item h3 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
       color: var(--text-dark);
+      font-weight: 600;
     }
 
     .contact-item p {
       color: var(--text-light);
       font-weight: 500;
+      font-size: 1.1rem;
     }
 
     /* WhatsApp Button */
@@ -370,37 +522,48 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 60px;
-      height: 60px;
+      width: 65px;
+      height: 65px;
       background: #25d366;
       border-radius: 50%;
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
       transition: all 0.3s ease;
     }
 
     .whatsapp a:hover {
       transform: scale(1.1);
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
     }
 
     .whatsapp i {
       color: white;
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
 
     /* Footer */
     footer {
-      background: var(--secondary-color);
+      background: var(--gradient-dark);
       color: white;
       text-align: center;
-      padding: 40px 20px;
-      margin-top: 80px;
+      padding: 60px 20px;
+      margin-top: 100px;
+    }
+
+    footer p:first-child {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    footer p:last-child {
+      opacity: 0.7;
+      font-size: 0.95rem;
     }
 
     /* Animations */
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px);
       }
       to {
         opacity: 1;
@@ -419,12 +582,28 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
+      header {
+        padding: 80px 20px 60px;
+        min-height: 60vh;
+      }
+      
       section {
-        padding: 60px 20px;
+        padding: 80px 20px;
       }
       
       .planos {
         grid-template-columns: 1fr;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-primary, .cta-secondary {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
       }
       
       nav .nav-container {
@@ -441,7 +620,17 @@
   <header>
     <div class="content">
       <h1>Marcos Fibra</h1>
-      <p>Internet rápida e segura, onde as outras não chegam!</p>
+      <p class="subtitle">Internet rápida e segura, onde as outras não chegam!</p>
+      <div class="cta-buttons">
+        <a href="#planos" class="cta-primary">
+          <i class="fas fa-rocket"></i>
+          Ver Planos
+        </a>
+        <a href="#formulario" class="cta-secondary">
+          <i class="fas fa-calculator"></i>
+          Solicitar Orçamento
+        </a>
+      </div>
     </div>
   </header>
 
@@ -465,57 +654,62 @@
     <div class="planos">
       <div class="plano">
         <h3>💡 Básico</h3>
-        <div class="price">R$ 79,90<span style="font-size: 0.6em; color: #6b7280;">/mês</span></div>
+        <div class="price">R$ 79,90<span style="font-size: 0.5em; color: #64748b;">/mês</span></div>
         <ul class="features">
           <li>100 Mega de velocidade</li>
           <li>Wi-Fi incluso</li>
           <li>Suporte 24h</li>
           <li>Instalação grátis</li>
         </ul>
+        <button class="plan-button">Escolher Plano</button>
       </div>
       
       <div class="plano">
         <h3>📶 Intermediário</h3>
-        <div class="price">R$ 99,90<span style="font-size: 0.6em; color: #6b7280;">/mês</span></div>
+        <div class="price">R$ 99,90<span style="font-size: 0.5em; color: #64748b;">/mês</span></div>
         <ul class="features">
           <li>200 Mega de velocidade</li>
           <li>Wi-Fi de alta performance</li>
           <li>Suporte prioritário</li>
           <li>Instalação grátis</li>
         </ul>
+        <button class="plan-button">Escolher Plano</button>
       </div>
       
       <div class="plano">
         <h3>🚀 Avançado</h3>
-        <div class="price">R$ 129,90<span style="font-size: 0.6em; color: #6b7280;">/mês</span></div>
+        <div class="price">R$ 129,90<span style="font-size: 0.5em; color: #64748b;">/mês</span></div>
         <ul class="features">
           <li>300 Mega de velocidade</li>
           <li>Wi-Fi mesh disponível</li>
           <li>Suporte VIP</li>
           <li>Instalação e configuração</li>
         </ul>
+        <button class="plan-button">Escolher Plano</button>
       </div>
       
       <div class="plano">
         <h3>🏢 Empresarial</h3>
-        <div class="price">R$ 179,90<span style="font-size: 0.6em; color: #6b7280;">/mês</span></div>
+        <div class="price">R$ 179,90<span style="font-size: 0.5em; color: #64748b;">/mês</span></div>
         <ul class="features">
           <li>400 Mega dedicados</li>
           <li>IP fixo incluso</li>
           <li>SLA garantido</li>
           <li>Suporte técnico especializado</li>
         </ul>
+        <button class="plan-button">Escolher Plano</button>
       </div>
       
       <div class="plano">
         <h3>🌿 Rural Conectado</h3>
-        <div class="price">R$ 119,90<span style="font-size: 0.6em; color: #6b7280;">/mês</span></div>
+        <div class="price">R$ 119,90<span style="font-size: 0.5em; color: #64748b;">/mês</span></div>
         <ul class="features">
           <li>Até 200 Mega</li>
           <li>Cobertura rural especializada</li>
           <li>Equipamentos resistentes</li>
           <li>Suporte local</li>
         </ul>
+        <button class="plan-button">Escolher Plano</button>
       </div>
     </div>
   </section>
@@ -562,7 +756,7 @@
       </div>
       
       <button type="submit">
-        <i class="fab fa-whatsapp" style="margin-right: 10px;"></i>
+        <i class="fab fa-whatsapp"></i>
         Enviar para o WhatsApp
       </button>
     </form>
@@ -599,7 +793,7 @@
 
   <footer>
     <p>&copy; 2025 Marcos Fibra - Todos os direitos reservados</p>
-    <p style="margin-top: 10px; opacity: 0.8;">Conectando você ao futuro</p>
+    <p>Conectando você ao futuro</p>
   </footer>
 
   <script>
@@ -616,7 +810,7 @@
           title: "Atenção!",
           text: "Por favor, preencha todos os campos.",
           icon: "warning",
-          confirmButtonColor: "#dc2626"
+          confirmButtonColor: "#1e40af"
         });
         return;
       }
@@ -635,7 +829,7 @@
         text: "Você será direcionado para o WhatsApp!",
         icon: "success",
         timer: 2000,
-        confirmButtonColor: "#dc2626"
+        confirmButtonColor: "#1e40af"
       });
       
       setTimeout(() => {
@@ -643,9 +837,32 @@
       }, 1000);
     });
 
+    // Plan button functionality
+    document.querySelectorAll('.plan-button').forEach(button => {
+      button.addEventListener('click', function() {
+        document.getElementById('formulario').scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
     // Smooth scroll for navigation links
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // CTA buttons smooth scroll
+    document.querySelectorAll('.cta-primary, .cta-secondary').forEach(button => {
+      button.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
