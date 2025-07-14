@@ -43,18 +43,34 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
       color: var(--text-dark);
-      background: var(--bg-light);
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      position: relative;
+    }
+
+    /* Background Pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(30, 64, 175, 0.05) 0%, transparent 50%);
+      z-index: -1;
+      pointer-events: none;
     }
 
     /* Header Styles */
     header {
       background: var(--gradient-dark);
       color: white;
-      padding: 120px 20px 100px;
+      padding: 0;
       text-align: center;
       position: relative;
       overflow: hidden;
-      min-height: 70vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -67,8 +83,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3') center/cover;
-      opacity: 0.08;
+      background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
       z-index: 1;
     }
 
@@ -79,91 +94,141 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 64, 175, 0.75) 100%);
       z-index: 2;
     }
 
-    header .content {
+    .header-content {
       position: relative;
       z-index: 3;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeInUp 1s ease-out;
     }
 
     header h1 {
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 700;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 800;
       margin-bottom: 25px;
       background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      animation: fadeInUp 1s ease-out;
-      letter-spacing: -0.02em;
+      animation: fadeInUp 1s ease-out 0.2s both;
+      letter-spacing: -0.03em;
     }
 
     header .subtitle {
-      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
       font-weight: 400;
-      opacity: 0.9;
-      margin-bottom: 40px;
-      animation: fadeInUp 1s ease-out 0.2s both;
+      opacity: 0.95;
+      margin-bottom: 50px;
+      animation: fadeInUp 1s ease-out 0.4s both;
       color: #cbd5e1;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .cta-buttons {
       display: flex;
-      gap: 20px;
+      gap: 25px;
       justify-content: center;
       flex-wrap: wrap;
-      animation: fadeInUp 1s ease-out 0.4s both;
+      animation: fadeInUp 1s ease-out 0.6s both;
     }
 
     .cta-primary, .cta-secondary {
-      padding: 15px 30px;
+      padding: 18px 35px;
       border-radius: 50px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       font-size: 1.1rem;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
     }
 
     .cta-primary {
       background: var(--gradient-primary);
       color: white;
-      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+    }
+
+    .cta-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .cta-primary:hover::before {
+      left: 100%;
     }
 
     .cta-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px rgba(59, 130, 246, 0.5);
     }
 
     .cta-secondary {
       background: rgba(255, 255, 255, 0.1);
       color: white;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(15px);
     }
 
     .cta-secondary:hover {
       background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator i {
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.7);
     }
 
     /* Navigation */
     nav {
       background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(15px);
+      backdrop-filter: blur(20px);
       padding: 20px 0;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid var(--gray-200);
     }
 
@@ -195,19 +260,26 @@
       box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
     }
 
+    /* Main content background */
+    main {
+      position: relative;
+      background: linear-gradient(180deg, var(--bg-light) 0%, #ffffff 100%);
+    }
+
     /* Section Styles */
     section {
-      padding: 100px 20px;
+      padding: 120px 20px;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
     }
 
     h2 {
-      font-size: clamp(2.2rem, 4vw, 2.8rem);
-      font-weight: 700;
+      font-size: clamp(2.5rem, 5vw, 3.2rem);
+      font-weight: 800;
       color: var(--text-dark);
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 70px;
       position: relative;
       letter-spacing: -0.02em;
     }
@@ -215,21 +287,21 @@
     h2::after {
       content: '';
       position: absolute;
-      bottom: -15px;
+      bottom: -20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
+      width: 100px;
+      height: 5px;
       background: var(--gradient-primary);
-      border-radius: 2px;
+      border-radius: 3px;
     }
 
     /* About Section */
     #sobre {
       background: var(--white);
-      border-radius: 30px;
-      margin: 60px auto;
-      box-shadow: var(--shadow);
+      border-radius: 40px;
+      margin: 80px auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
       position: relative;
       overflow: hidden;
     }
@@ -240,32 +312,68 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
+      height: 6px;
       background: var(--gradient-primary);
     }
 
+    #sobre::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
     #sobre p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       text-align: center;
       max-width: 800px;
       margin: 0 auto;
       color: var(--text-light);
       line-height: 1.8;
+      position: relative;
+      z-index: 2;
     }
 
     /* Plans Section */
+    #planos {
+      background: linear-gradient(135deg, var(--gray-50) 0%, #ffffff 100%);
+      border-radius: 40px;
+      margin: 80px auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #planos::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(30, 64, 175, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
     .planos {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 35px;
-      margin-top: 60px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      margin-top: 70px;
+      position: relative;
+      z-index: 2;
     }
 
     .plano {
       background: var(--white);
-      padding: 45px 35px;
-      border-radius: 25px;
-      box-shadow: var(--shadow);
+      padding: 50px 40px;
+      border-radius: 30px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
       text-align: center;
       transition: all 0.4s ease;
       position: relative;
@@ -279,114 +387,153 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 5px;
+      height: 6px;
       background: var(--gradient-primary);
     }
 
+    .plano::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.02) 0%, transparent 70%);
+      transition: all 0.4s ease;
+    }
+
     .plano:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+      transform: translateY(-20px);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.15);
       border-color: var(--accent-light);
     }
 
+    .plano:hover::after {
+      top: -30%;
+      right: -30%;
+    }
+
     .plano h3 {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: var(--text-dark);
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 2;
     }
 
     .plano .price {
-      font-size: 2.5rem;
-      font-weight: 800;
+      font-size: 3rem;
+      font-weight: 900;
       background: var(--gradient-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 2;
     }
 
     .plano .features {
       list-style: none;
-      margin-bottom: 35px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
     }
 
     .plano .features li {
-      padding: 10px 0;
+      padding: 12px 0;
       color: var(--text-light);
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
 
     .plano .features li::before {
       content: '✓';
       color: var(--accent-color);
       font-weight: bold;
-      margin-right: 12px;
-      font-size: 1.1rem;
+      margin-right: 15px;
+      font-size: 1.2rem;
     }
 
     .plan-button {
       background: var(--gradient-primary);
       color: white;
       border: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      font-weight: 600;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.3s ease;
       width: 100%;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 2;
     }
 
     .plan-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
     }
 
     /* Services Section */
     #servicos {
-      background: var(--gray-50);
-      border-radius: 30px;
-      margin: 60px auto;
+      background: var(--white);
+      border-radius: 40px;
+      margin: 80px auto;
       position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    }
+
+    #servicos::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--gradient-primary);
     }
 
     #servicos ul {
       list-style: none;
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
       display: grid;
-      gap: 25px;
+      gap: 30px;
     }
 
     #servicos li {
-      background: var(--white);
-      padding: 25px;
-      border-radius: 15px;
-      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+      padding: 30px;
+      border-radius: 20px;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+      transition: all 0.4s ease;
+      border: 1px solid var(--gray-200);
     }
 
     #servicos li:hover {
-      transform: translateX(10px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transform: translateX(15px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--accent-light);
     }
 
     #servicos li i {
       color: var(--accent-color);
-      margin-right: 20px;
-      font-size: 1.4rem;
-      width: 30px;
+      margin-right: 25px;
+      font-size: 1.6rem;
+      width: 40px;
     }
 
     /* Form Section */
     #formulario {
-      background: var(--white);
-      border-radius: 30px;
-      margin: 60px auto;
-      box-shadow: var(--shadow);
+      background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+      border-radius: 40px;
+      margin: 80px auto;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.1);
       position: relative;
       overflow: hidden;
     }
@@ -397,7 +544,7 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 5px;
+      height: 6px;
       background: var(--gradient-primary);
     }
 
@@ -407,26 +554,26 @@
     }
 
     .form-group {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
 
     .formulario label {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       font-weight: 600;
       color: var(--text-dark);
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
 
     .formulario input,
     .formulario select {
       width: 100%;
-      padding: 18px;
+      padding: 20px;
       border: 2px solid var(--gray-200);
-      border-radius: 15px;
-      font-size: 1rem;
+      border-radius: 20px;
+      font-size: 1.05rem;
       transition: all 0.3s ease;
-      background: var(--gray-50);
+      background: var(--white);
       font-family: inherit;
     }
 
@@ -434,79 +581,113 @@
     .formulario select:focus {
       outline: none;
       border-color: var(--accent-color);
-      background: var(--white);
-      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+      box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.1);
+      transform: translateY(-2px);
     }
 
     .formulario button {
       width: 100%;
-      padding: 20px;
+      padding: 22px;
       background: var(--gradient-primary);
       color: white;
       border: none;
-      border-radius: 15px;
-      font-size: 1.2rem;
+      border-radius: 20px;
+      font-size: 1.3rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 15px;
+      transition: all 0.4s ease;
+      margin-top: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .formulario button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .formulario button:hover::before {
+      left: 100%;
     }
 
     .formulario button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(59, 130, 246, 0.4);
     }
 
     /* Contact Section */
     #contato {
       text-align: center;
+      background: var(--white);
+      border-radius: 40px;
+      margin: 80px auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contato::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--gradient-primary);
     }
 
     .contact-info {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 35px;
-      margin-top: 50px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
     }
 
     .contact-item {
-      background: var(--white);
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
+      background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+      padding: 45px 35px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
       border: 1px solid var(--gray-200);
     }
 
     .contact-item:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+      border-color: var(--accent-light);
     }
 
     .contact-item i {
-      font-size: 2.5rem;
+      font-size: 3rem;
       background: var(--gradient-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .contact-item h3 {
-      font-size: 1.3rem;
-      margin-bottom: 15px;
+      font-size: 1.4rem;
+      margin-bottom: 18px;
       color: var(--text-dark);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .contact-item p {
       color: var(--text-light);
       font-weight: 500;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
     }
 
     /* WhatsApp Button */
@@ -522,22 +703,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 65px;
-      height: 65px;
+      width: 70px;
+      height: 70px;
       background: #25d366;
       border-radius: 50%;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
       transition: all 0.3s ease;
     }
 
     .whatsapp a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+      transform: scale(1.15);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
     }
 
     .whatsapp i {
       color: white;
-      font-size: 2rem;
+      font-size: 2.2rem;
     }
 
     /* Footer */
@@ -545,25 +726,42 @@
       background: var(--gradient-dark);
       color: white;
       text-align: center;
-      padding: 60px 20px;
-      margin-top: 100px;
+      padding: 80px 20px;
+      margin-top: 120px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3') center/cover;
+      opacity: 0.05;
     }
 
     footer p:first-child {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 2;
     }
 
     footer p:last-child {
-      opacity: 0.7;
-      font-size: 0.95rem;
+      opacity: 0.8;
+      font-size: 1rem;
+      position: relative;
+      z-index: 2;
     }
 
     /* Animations */
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(50px);
       }
       to {
         opacity: 1;
@@ -580,11 +778,23 @@
       }
     }
 
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-5px) translateX(-50%);
+      }
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       header {
-        padding: 80px 20px 60px;
-        min-height: 60vh;
+        min-height: 80vh;
+        padding: 40px 20px;
       }
       
       section {
@@ -602,7 +812,7 @@
       
       .cta-primary, .cta-secondary {
         width: 100%;
-        max-width: 300px;
+        max-width: 320px;
         justify-content: center;
       }
       
@@ -613,14 +823,22 @@
       .contact-info {
         grid-template-columns: 1fr;
       }
+
+      h2 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="content">
+    <div class="header-content">
+      <div class="header-badge">
+        <i class="fas fa-bolt"></i>
+        Fibra Óptica de Alta Velocidade
+      </div>
       <h1>Marcos Fibra</h1>
-      <p class="subtitle">Internet rápida e segura, onde as outras não chegam!</p>
+      <p class="subtitle">Internet rápida e segura, onde as outras não chegam! Conectividade profissional para sua casa ou empresa.</p>
       <div class="cta-buttons">
         <a href="#planos" class="cta-primary">
           <i class="fas fa-rocket"></i>
@@ -631,6 +849,9 @@
           Solicitar Orçamento
         </a>
       </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
     </div>
   </header>
 
@@ -644,146 +865,148 @@
     </div>
   </nav>
 
-  <section id="sobre">
-    <h2>Quem Somos</h2>
-    <p>Somos um provedor de internet via fibra óptica com foco em qualidade, estabilidade e suporte humanizado. Atuamos em bairros, zonas rurais, comércios e condomínios, levando conectividade de alta qualidade onde você mais precisa.</p>
-  </section>
+  <main>
+    <section id="sobre">
+      <h2>Quem Somos</h2>
+      <p>Somos um provedor de internet via fibra óptica com foco em qualidade, estabilidade e suporte humanizado. Atuamos em bairros, zonas rurais, comércios e condomínios, levando conectividade de alta qualidade onde você mais precisa.</p>
+    </section>
 
-  <section id="planos">
-    <h2>Planos Disponíveis</h2>
-    <div class="planos">
-      <div class="plano">
-        <h3>💡 Básico</h3>
-        <div class="price">R$ 79,90<span style="font-size: 0.5em; color: #64748b;">/mês</span></div>
-        <ul class="features">
-          <li>100 Mega de velocidade</li>
-          <li>Wi-Fi incluso</li>
-          <li>Suporte 24h</li>
-          <li>Instalação grátis</li>
-        </ul>
-        <button class="plan-button">Escolher Plano</button>
+    <section id="planos">
+      <h2>Planos Disponíveis</h2>
+      <div class="planos">
+        <div class="plano">
+          <h3>💡 Básico</h3>
+          <div class="price">R$ 79,90<span style="font-size: 0.4em; color: #64748b;">/mês</span></div>
+          <ul class="features">
+            <li>100 Mega de velocidade</li>
+            <li>Wi-Fi incluso</li>
+            <li>Suporte 24h</li>
+            <li>Instalação grátis</li>
+          </ul>
+          <button class="plan-button">Escolher Plano</button>
+        </div>
+        
+        <div class="plano">
+          <h3>📶 Intermediário</h3>
+          <div class="price">R$ 99,90<span style="font-size: 0.4em; color: #64748b;">/mês</span></div>
+          <ul class="features">
+            <li>200 Mega de velocidade</li>
+            <li>Wi-Fi de alta performance</li>
+            <li>Suporte prioritário</li>
+            <li>Instalação grátis</li>
+          </ul>
+          <button class="plan-button">Escolher Plano</button>
+        </div>
+        
+        <div class="plano">
+          <h3>🚀 Avançado</h3>
+          <div class="price">R$ 129,90<span style="font-size: 0.4em; color: #64748b;">/mês</span></div>
+          <ul class="features">
+            <li>300 Mega de velocidade</li>
+            <li>Wi-Fi mesh disponível</li>
+            <li>Suporte VIP</li>
+            <li>Instalação e configuração</li>
+          </ul>
+          <button class="plan-button">Escolher Plano</button>
+        </div>
+        
+        <div class="plano">
+          <h3>🏢 Empresarial</h3>
+          <div class="price">R$ 179,90<span style="font-size: 0.4em; color: #64748b;">/mês</span></div>
+          <ul class="features">
+            <li>400 Mega dedicados</li>
+            <li>IP fixo incluso</li>
+            <li>SLA garantido</li>
+            <li>Suporte técnico especializado</li>
+          </ul>
+          <button class="plan-button">Escolher Plano</button>
+        </div>
+        
+        <div class="plano">
+          <h3>🌿 Rural Conectado</h3>
+          <div class="price">R$ 119,90<span style="font-size: 0.4em; color: #64748b;">/mês</span></div>
+          <ul class="features">
+            <li>Até 200 Mega</li>
+            <li>Cobertura rural especializada</li>
+            <li>Equipamentos resistentes</li>
+            <li>Suporte local</li>
+          </ul>
+          <button class="plan-button">Escolher Plano</button>
+        </div>
       </div>
-      
-      <div class="plano">
-        <h3>📶 Intermediário</h3>
-        <div class="price">R$ 99,90<span style="font-size: 0.5em; color: #64748b;">/mês</span></div>
-        <ul class="features">
-          <li>200 Mega de velocidade</li>
-          <li>Wi-Fi de alta performance</li>
-          <li>Suporte prioritário</li>
-          <li>Instalação grátis</li>
-        </ul>
-        <button class="plan-button">Escolher Plano</button>
-      </div>
-      
-      <div class="plano">
-        <h3>🚀 Avançado</h3>
-        <div class="price">R$ 129,90<span style="font-size: 0.5em; color: #64748b;">/mês</span></div>
-        <ul class="features">
-          <li>300 Mega de velocidade</li>
-          <li>Wi-Fi mesh disponível</li>
-          <li>Suporte VIP</li>
-          <li>Instalação e configuração</li>
-        </ul>
-        <button class="plan-button">Escolher Plano</button>
-      </div>
-      
-      <div class="plano">
-        <h3>🏢 Empresarial</h3>
-        <div class="price">R$ 179,90<span style="font-size: 0.5em; color: #64748b;">/mês</span></div>
-        <ul class="features">
-          <li>400 Mega dedicados</li>
-          <li>IP fixo incluso</li>
-          <li>SLA garantido</li>
-          <li>Suporte técnico especializado</li>
-        </ul>
-        <button class="plan-button">Escolher Plano</button>
-      </div>
-      
-      <div class="plano">
-        <h3>🌿 Rural Conectado</h3>
-        <div class="price">R$ 119,90<span style="font-size: 0.5em; color: #64748b;">/mês</span></div>
-        <ul class="features">
-          <li>Até 200 Mega</li>
-          <li>Cobertura rural especializada</li>
-          <li>Equipamentos resistentes</li>
-          <li>Suporte local</li>
-        </ul>
-        <button class="plan-button">Escolher Plano</button>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="servicos">
-    <h2>Serviços Adicionais</h2>
-    <ul>
-      <li><i class="fas fa-video"></i>Instalação de câmeras com acesso pelo celular (CFTV)</li>
-      <li><i class="fas fa-wifi"></i>Expansão de rede Wi-Fi para toda a casa</li>
-      <li><i class="fas fa-building"></i>Link dedicado para empresas</li>
-      <li><i class="fas fa-tools"></i>Suporte técnico especializado</li>
-      <li><i class="fas fa-shield-alt"></i>Monitoramento 24/7 da rede</li>
-    </ul>
-  </section>
+    <section id="servicos">
+      <h2>Serviços Adicionais</h2>
+      <ul>
+        <li><i class="fas fa-video"></i>Instalação de câmeras com acesso pelo celular (CFTV)</li>
+        <li><i class="fas fa-wifi"></i>Expansão de rede Wi-Fi para toda a casa</li>
+        <li><i class="fas fa-building"></i>Link dedicado para empresas</li>
+        <li><i class="fas fa-tools"></i>Suporte técnico especializado</li>
+        <li><i class="fas fa-shield-alt"></i>Monitoramento 24/7 da rede</li>
+      </ul>
+    </section>
 
-  <section id="formulario">
-    <h2>Solicite um Orçamento</h2>
-    <form id="formularioContato" class="formulario">
-      <div class="form-group">
-        <label for="nome">Nome Completo</label>
-        <input type="text" id="nome" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="bairro">Bairro / Localidade</label>
-        <input type="text" id="bairro" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="telefone">Telefone / WhatsApp</label>
-        <input type="text" id="telefone" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="plano">Plano Desejado</label>
-        <select id="plano" required>
-          <option value="">-- Escolha o plano --</option>
-          <option value="100 Mega - Básico">100 Mega - Básico</option>
-          <option value="200 Mega - Intermediário">200 Mega - Intermediário</option>
-          <option value="300 Mega - Avançado">300 Mega - Avançado</option>
-          <option value="400 Mega - Empresarial">400 Mega - Empresarial</option>
-          <option value="Rural Conectado">Rural Conectado</option>
-        </select>
-      </div>
-      
-      <button type="submit">
-        <i class="fab fa-whatsapp"></i>
-        Enviar para o WhatsApp
-      </button>
-    </form>
-  </section>
+    <section id="formulario">
+      <h2>Solicite um Orçamento</h2>
+      <form id="formularioContato" class="formulario">
+        <div class="form-group">
+          <label for="nome">Nome Completo</label>
+          <input type="text" id="nome" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="bairro">Bairro / Localidade</label>
+          <input type="text" id="bairro" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="telefone">Telefone / WhatsApp</label>
+          <input type="text" id="telefone" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="plano">Plano Desejado</label>
+          <select id="plano" required>
+            <option value="">-- Escolha o plano --</option>
+            <option value="100 Mega - Básico">100 Mega - Básico</option>
+            <option value="200 Mega - Intermediário">200 Mega - Intermediário</option>
+            <option value="300 Mega - Avançado">300 Mega - Avançado</option>
+            <option value="400 Mega - Empresarial">400 Mega - Empresarial</option>
+            <option value="Rural Conectado">Rural Conectado</option>
+          </select>
+        </div>
+        
+        <button type="submit">
+          <i class="fab fa-whatsapp"></i>
+          Enviar para o WhatsApp
+        </button>
+      </form>
+    </section>
 
-  <section id="contato">
-    <h2>Fale com a Gente</h2>
-    <div class="contact-info">
-      <div class="contact-item">
-        <i class="fab fa-whatsapp"></i>
-        <h3>WhatsApp</h3>
-        <p>(15) 99649-3961</p>
+    <section id="contato">
+      <h2>Fale com a Gente</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fab fa-whatsapp"></i>
+          <h3>WhatsApp</h3>
+          <p>(15) 99649-3961</p>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <h3>E-mail</h3>
+          <p>marcosemphpp@gmail.com</p>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fab fa-instagram"></i>
+          <h3>Instagram</h3>
+          <p>@marcosfibra</p>
+        </div>
       </div>
-      
-      <div class="contact-item">
-        <i class="fas fa-envelope"></i>
-        <h3>E-mail</h3>
-        <p>marcosemphpp@gmail.com</p>
-      </div>
-      
-      <div class="contact-item">
-        <i class="fab fa-instagram"></i>
-        <h3>Instagram</h3>
-        <p>@marcosfibra</p>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <div class="whatsapp">
     <a href="https://wa.me/5515996493961" target="_blank">
@@ -871,6 +1094,13 @@
             block: 'start'
           });
         }
+      });
+    });
+
+    // Scroll indicator
+    document.querySelector('.scroll-indicator').addEventListener('click', function() {
+      document.querySelector('#sobre').scrollIntoView({
+        behavior: 'smooth'
       });
     });
   </script>
