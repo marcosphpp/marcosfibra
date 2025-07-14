@@ -153,7 +153,7 @@
     }
 
     .cta-primary, .cta-secondary {
-      padding: 20px 40px; /* Aumentado o preenchimento */
+      padding: 20px 40px;
       border-radius: 50px;
       font-weight: 600;
       text-decoration: none;
@@ -169,7 +169,7 @@
     .cta-primary {
       background: var(--gradient-primary);
       color: white;
-      box-shadow: 0 20px 45px rgba(59, 130, 246, 0.5); /* Sombra inicial mais forte */
+      box-shadow: 0 20px 45px rgba(59, 130, 246, 0.5);
     }
 
     .cta-primary::before {
@@ -188,21 +188,21 @@
     }
 
     .cta-primary:hover {
-      transform: translateY(-5px); /* Levemente mais para cima no hover */
-      box-shadow: 0 30px 60px rgba(59, 130, 246, 0.7); /* Sombra de hover mais intensa */
+      transform: translateY(-5px);
+      box-shadow: 0 30px 60px rgba(59, 130, 246, 0.7);
     }
 
     .cta-secondary {
-      background: rgba(255, 255, 255, 0.15); /* Opacidade inicial ligeiramente maior */
+      background: rgba(255, 255, 255, 0.15);
       color: white;
       border: 2px solid rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(15px);
     }
 
     .cta-secondary:hover {
-      background: rgba(255, 255, 255, 0.3); /* Opacidade de hover aumentada */
-      transform: translateY(-5px); /* Levemente mais para cima no hover */
-      border-color: rgba(255, 255, 255, 0.6); /* Borda mais visível no hover */
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.6);
     }
 
     /* Scroll indicator */
@@ -245,20 +245,20 @@
     nav a {
       color: var(--text-dark);
       text-decoration: none;
-      font-weight: 600; /* Fonte mais negrita */
-      padding: 16px 32px; /* Preenchimento aumentado */
+      font-weight: 600;
+      padding: 16px 32px;
       border-radius: 30px;
       transition: all 0.3s ease;
       position: relative;
-      font-size: 1.1rem; /* Tamanho da fonte aumentado */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra mais definida */
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     }
 
     nav a:hover {
       background: var(--gradient-primary);
       color: white;
-      transform: translateY(-4px) scale(1.03); /* Efeito de hover mais pronunciado */
-      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.5); /* Sombra de hover mais intensa */
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.5);
     }
 
     /* Main content background */
@@ -368,6 +368,7 @@
       margin-top: 70px;
       position: relative;
       z-index: 2;
+      align-items: stretch; /* Garante que os itens do grid se estiquem para a mesma altura */
     }
 
     .plano {
@@ -380,6 +381,8 @@
       position: relative;
       overflow: hidden;
       border: 1px solid var(--gray-200);
+      display: flex; /* Transforma em flex container */
+      flex-direction: column; /* Organiza os itens em coluna */
     }
 
     .plano::before {
@@ -440,6 +443,7 @@
       margin-bottom: 40px;
       position: relative;
       z-index: 2;
+      flex-grow: 1; /* Permite que a lista de recursos ocupe o espaço disponível */
     }
 
     .plano .features li {
@@ -469,6 +473,7 @@
       font-size: 1.1rem;
       position: relative;
       z-index: 2;
+      margin-top: auto; /* Empurra o botão para o final do flex container */
     }
 
     .plan-button:hover {
@@ -838,7 +843,7 @@
         <i class="fas fa-bolt"></i>
         Fibra Óptica de Alta Velocidade
       </div>
-      <h1>MARCOS@NET</h1>
+      <h1>Marcos Fibra</h1>
       <p class="subtitle">Internet rápida e segura, onde as outras não chegam! Conectividade profissional para sua casa ou empresa.</p>
       <div class="cta-buttons">
         <a href="#planos" class="cta-primary">
@@ -1003,7 +1008,7 @@
         <div class="contact-item">
           <i class="fab fa-instagram"></i>
           <h3>Instagram</h3>
-          <p>@marcos_lima1411</p>
+          <p>@marcosfibra</p>
         </div>
       </div>
     </section>
