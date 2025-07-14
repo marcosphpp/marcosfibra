@@ -368,7 +368,7 @@
       margin-top: 70px;
       position: relative;
       z-index: 2;
-      align-items: stretch; /* Garante que os itens do grid se estiquem para a mesma altura */
+      align-items: stretch;
     }
 
     .plano {
@@ -381,8 +381,8 @@
       position: relative;
       overflow: hidden;
       border: 1px solid var(--gray-200);
-      display: flex; /* Transforma em flex container */
-      flex-direction: column; /* Organiza os itens em coluna */
+      display: flex;
+      flex-direction: column;
     }
 
     .plano::before {
@@ -436,6 +436,7 @@
       margin-bottom: 30px;
       position: relative;
       z-index: 2;
+      white-space: nowrap; /* Adicionado para evitar quebra de linha */
     }
 
     .plano .features {
@@ -443,7 +444,7 @@
       margin-bottom: 40px;
       position: relative;
       z-index: 2;
-      flex-grow: 1; /* Permite que a lista de recursos ocupe o espaço disponível */
+      flex-grow: 1;
     }
 
     .plano .features li {
@@ -473,7 +474,7 @@
       font-size: 1.1rem;
       position: relative;
       z-index: 2;
-      margin-top: auto; /* Empurra o botão para o final do flex container */
+      margin-top: auto;
     }
 
     .plan-button:hover {
