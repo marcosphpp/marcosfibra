@@ -5,19 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marcos Fibra - Internet de Verdade</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #222; }
+    body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #333; }
     header { background: #c62828; color: white; padding: 20px; text-align: center; }
     nav { background: #b71c1c; padding: 10px; text-align: center; }
     nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    section { padding: 40px 20px; max-width: 1000px; margin: auto; }
+    nav a:hover { text-decoration: underline; }
+    section { padding: 40px 20px; max-width: 1200px; margin: auto; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
     h2 { color: #c62828; }
     .planos { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .plano { border: 1px solid #ddd; padding: 20px; border-radius: 8px; width: 220px; text-align: center; }
+    .plano { border: 1px solid #ddd; padding: 20px; border-radius: 8px; width: 220px; text-align: center; transition: transform 0.3s; }
+    .plano:hover { transform: scale(1.05); }
     .plano h3 { margin-top: 0; color: #b71c1c; }
-    .btn { background: #c62828; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
+    .btn { background: #c62828; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; transition: background 0.3s; }
+    .btn:hover { background: #b71c1c; }
     footer { background: #eee; text-align: center; padding: 20px; margin-top: 40px; }
     .whatsapp { position: fixed; bottom: 20px; right: 20px; }
     .whatsapp img { width: 60px; height: 60px; }
+    @media (max-width: 768px) {
+      .planos { flex-direction: column; align-items: center; }
+      .plano { width: 90%; }
+    }
   </style>
 </head>
 <body>
@@ -29,6 +36,7 @@
     <a href="#sobre">Sobre</a>
     <a href="#planos">Planos</a>
     <a href="#servicos">Serviços</a>
+    <a href="#depoimentos">Depoimentos</a>
     <a href="#contato">Contato</a>
   </nav>
 
@@ -43,22 +51,27 @@
       <div class="plano">
         <h3>100 Mega</h3>
         <p>R$ 79,90/mês</p>
+        <a href="#" class="btn">Assinar</a>
       </div>
       <div class="plano">
         <h3>200 Mega</h3>
         <p>R$ 99,90/mês</p>
+        <a href="#" class="btn">Assinar</a>
       </div>
       <div class="plano">
         <h3>300 Mega</h3>
         <p>R$ 129,90/mês</p>
+        <a href="#" class="btn">Assinar</a>
       </div>
       <div class="plano">
         <h3>Empresarial 400Mb</h3>
         <p>R$ 179,90/mês</p>
+        <a href="#" class="btn">Assinar</a>
       </div>
       <div class="plano">
         <h3>Plano Rural</h3>
         <p>R$ 119,90/mês</p>
+        <a href="#" class="btn">Assinar</a>
       </div>
     </div>
   </section>
@@ -70,6 +83,12 @@
       <li>Expansão de sinal Wi-Fi em residências</li>
       <li>Link dedicado para empresas</li>
     </ul>
+  </section>
+
+  <section id="depoimentos">
+    <h2>O que nossos clientes dizem</h2>
+    <p>"A Marcos Fibra transformou a minha conexão! Super recomendo!" - <em>João Silva</em></p>
+    <p>"Ótimo atendimento e internet estável. Estou satisfeito!" - <em>Maria Oliveira</em></p>
   </section>
 
   <section id="contato">
