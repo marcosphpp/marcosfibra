@@ -4,227 +4,620 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Marcos Fibra - Internet de Verdade</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; font-family: 'Roboto', sans-serif;
-      background: #f2f2f2; color: #333;
+    :root {
+      --primary-color: #dc2626;
+      --primary-dark: #b91c1c;
+      --secondary-color: #1f2937;
+      --accent-color: #3b82f6;
+      --text-dark: #1f2937;
+      --text-light: #6b7280;
+      --bg-light: #f8fafc;
+      --white: #ffffff;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background: var(--bg-light);
+    }
+
+    /* Header Styles */
     header {
-      background: linear-gradient(to right, #b71c1c, #c62828);
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
       color: white;
-      padding: 60px 20px;
+      padding: 100px 20px 80px;
       text-align: center;
-      background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158');
-      background-size: cover;
-      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3') center/cover;
+      opacity: 0.1;
+      z-index: 1;
+    }
+
+    header .content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     header h1 {
-      font-size: 3em;
-      text-shadow: 1px 1px 4px #000;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease-out;
     }
 
+    header p {
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      font-weight: 300;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    /* Navigation */
     nav {
-      background: #b71c1c;
-      text-align: center;
-      padding: 10px 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    nav .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0 20px;
     }
 
     nav a {
-      color: white;
-      margin: 0 20px;
+      color: var(--text-dark);
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
     }
 
+    /* Section Styles */
     section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     h2 {
-      color: #b71c1c;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 10px;
-      margin-bottom: 30px;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
     }
 
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    #sobre p {
+      font-size: 1.1rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* Plans Section */
     .planos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
     }
 
     .plano {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      background: var(--white);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
       text-align: center;
-      width: 220px;
-      transition: transform 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plano::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     }
 
     .plano:hover {
-      transform: scale(1.05);
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
     }
 
     .plano h3 {
-      color: #d32f2f;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 15px;
+    }
+
+    .plano .price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .plano .features {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .plano .features li {
+      padding: 8px 0;
+      color: var(--text-light);
+    }
+
+    .plano .features li::before {
+      content: '✓';
+      color: var(--primary-color);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    /* Services Section */
+    #servicos {
+      background: var(--white);
+      border-radius: 20px;
+      margin: 40px auto;
+      box-shadow: var(--shadow);
+    }
+
+    #servicos ul {
+      list-style: none;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #servicos li {
+      padding: 20px 0;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+    }
+
+    #servicos li:last-child {
+      border-bottom: none;
+    }
+
+    #servicos li i {
+      color: var(--primary-color);
+      margin-right: 15px;
+      font-size: 1.2rem;
+    }
+
+    /* Form Section */
+    #formulario {
+      background: var(--white);
+      border-radius: 20px;
+      margin: 40px auto;
+      box-shadow: var(--shadow);
+    }
+
+    .formulario {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
     }
 
     .formulario label {
       display: block;
-      margin-top: 15px;
-      font-weight: bold;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-dark);
     }
 
-    .formulario input, .formulario select {
+    .formulario input,
+    .formulario select {
       width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      padding: 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: var(--bg-light);
+    }
+
+    .formulario input:focus,
+    .formulario select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
     }
 
     .formulario button {
-      margin-top: 20px;
-      background: linear-gradient(to right, #d32f2f, #c2185b);
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       color: white;
       border: none;
-      padding: 15px 20px;
-      font-size: 1em;
-      border-radius: 8px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
-      width: 100%;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      margin-top: 10px;
     }
 
     .formulario button:hover {
-      background: linear-gradient(to right, #c62828, #ad1457);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
 
-    footer {
-      background: #eee;
+    /* Contact Section */
+    #contato {
       text-align: center;
-      padding: 20px;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
       margin-top: 40px;
     }
 
-    .whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 999;
+    .contact-item {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
     }
 
-    .whatsapp img {
+    .contact-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .contact-item i {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    .contact-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    .contact-item p {
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    /* WhatsApp Button */
+    .whatsapp {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 60px;
       height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.3s ease;
+    }
+
+    .whatsapp a:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp i {
+      color: white;
+      font-size: 1.8rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--secondary-color);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 20px;
+      }
+      
+      .planos {
+        grid-template-columns: 1fr;
+      }
+      
+      nav .nav-container {
+        justify-content: center;
+      }
+      
+      .contact-info {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Marcos Fibra</h1>
-    <p>Internet rápida e segura, onde as outras não chegam!</p>
+    <div class="content">
+      <h1>Marcos Fibra</h1>
+      <p>Internet rápida e segura, onde as outras não chegam!</p>
+    </div>
   </header>
 
   <nav>
-    <a href="#sobre">Sobre</a>
-    <a href="#planos">Planos</a>
-    <a href="#servicos">Serviços</a>
-    <a href="#formulario">Formulário</a>
-    <a href="#contato">Contato</a>
+    <div class="nav-container">
+      <a href="#sobre">Sobre</a>
+      <a href="#planos">Planos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#formulario">Orçamento</a>
+      <a href="#contato">Contato</a>
+    </div>
   </nav>
 
   <section id="sobre">
     <h2>Quem Somos</h2>
-    <p>Somos um provedor de internet via fibra óptica com foco em qualidade, estabilidade e suporte humanizado. Atuamos em bairros, zonas rurais, comércios e condomínios.</p>
+    <p>Somos um provedor de internet via fibra óptica com foco em qualidade, estabilidade e suporte humanizado. Atuamos em bairros, zonas rurais, comércios e condomínios, levando conectividade de alta qualidade onde você mais precisa.</p>
   </section>
 
   <section id="planos">
     <h2>Planos Disponíveis</h2>
     <div class="planos">
-      <div class="plano"><h3>💡 100 Mega</h3><p>R$ 79,90/mês</p></div>
-      <div class="plano"><h3>📶 200 Mega</h3><p>R$ 99,90/mês</p></div>
-      <div class="plano"><h3>🚀 300 Mega</h3><p>R$ 129,90/mês</p></div>
-      <div class="plano"><h3>🏢 Empresarial 400Mb</h3><p>R$ 179,90/mês</p></div>
-      <div class="plano"><h3>🌿 Rural Conectado</h3><p>R$ 119,90/mês</p></div>
+      <div class="plano">
+        <h3>💡 Básico</h3>
+        <div class="price">R$ 79,90<span style="font-size: 0.6em; color: #6b7280;">/mês</span></div>
+        <ul class="features">
+          <li>100 Mega de velocidade</li>
+          <li>Wi-Fi incluso</li>
+          <li>Suporte 24h</li>
+          <li>Instalação grátis</li>
+        </ul>
+      </div>
+      
+      <div class="plano">
+        <h3>📶 Intermediário</h3>
+        <div class="price">R$ 99,90<span style="font-size: 0.6em; color: #6b7280;">/mês</span></div>
+        <ul class="features">
+          <li>200 Mega de velocidade</li>
+          <li>Wi-Fi de alta performance</li>
+          <li>Suporte prioritário</li>
+          <li>Instalação grátis</li>
+        </ul>
+      </div>
+      
+      <div class="plano">
+        <h3>🚀 Avançado</h3>
+        <div class="price">R$ 129,90<span style="font-size: 0.6em; color: #6b7280;">/mês</span></div>
+        <ul class="features">
+          <li>300 Mega de velocidade</li>
+          <li>Wi-Fi mesh disponível</li>
+          <li>Suporte VIP</li>
+          <li>Instalação e configuração</li>
+        </ul>
+      </div>
+      
+      <div class="plano">
+        <h3>🏢 Empresarial</h3>
+        <div class="price">R$ 179,90<span style="font-size: 0.6em; color: #6b7280;">/mês</span></div>
+        <ul class="features">
+          <li>400 Mega dedicados</li>
+          <li>IP fixo incluso</li>
+          <li>SLA garantido</li>
+          <li>Suporte técnico especializado</li>
+        </ul>
+      </div>
+      
+      <div class="plano">
+        <h3>🌿 Rural Conectado</h3>
+        <div class="price">R$ 119,90<span style="font-size: 0.6em; color: #6b7280;">/mês</span></div>
+        <ul class="features">
+          <li>Até 200 Mega</li>
+          <li>Cobertura rural especializada</li>
+          <li>Equipamentos resistentes</li>
+          <li>Suporte local</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <section id="servicos">
     <h2>Serviços Adicionais</h2>
     <ul>
-      <li>✔️ Instalação de câmeras com acesso pelo celular (CFTV)</li>
-      <li>✔️ Expansão de rede Wi-Fi para toda a casa</li>
-      <li>✔️ Link dedicado para empresas</li>
+      <li><i class="fas fa-video"></i>Instalação de câmeras com acesso pelo celular (CFTV)</li>
+      <li><i class="fas fa-wifi"></i>Expansão de rede Wi-Fi para toda a casa</li>
+      <li><i class="fas fa-building"></i>Link dedicado para empresas</li>
+      <li><i class="fas fa-tools"></i>Suporte técnico especializado</li>
+      <li><i class="fas fa-shield-alt"></i>Monitoramento 24/7 da rede</li>
     </ul>
   </section>
 
   <section id="formulario">
     <h2>Solicite um Orçamento</h2>
     <form id="formularioContato" class="formulario">
-      <label for="nome">Nome Completo</label>
-      <input type="text" id="nome" required>
-      <label for="bairro">Bairro / Localidade</label>
-      <input type="text" id="bairro" required>
-      <label for="telefone">Telefone / WhatsApp</label>
-      <input type="text" id="telefone" required>
-      <label for="plano">Plano Desejado</label>
-      <select id="plano">
-        <option value="">-- Escolha o plano --</option>
-        <option value="100 Mega">100 Mega</option>
-        <option value="200 Mega">200 Mega</option>
-        <option value="300 Mega">300 Mega</option>
-        <option value="400 Mega Empresarial">400 Mega Empresarial</option>
-        <option value="Plano Rural">Plano Rural</option>
-      </select>
-      <button type="submit">Enviar para o WhatsApp</button>
+      <div class="form-group">
+        <label for="nome">Nome Completo</label>
+        <input type="text" id="nome" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="bairro">Bairro / Localidade</label>
+        <input type="text" id="bairro" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="telefone">Telefone / WhatsApp</label>
+        <input type="text" id="telefone" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="plano">Plano Desejado</label>
+        <select id="plano" required>
+          <option value="">-- Escolha o plano --</option>
+          <option value="100 Mega - Básico">100 Mega - Básico</option>
+          <option value="200 Mega - Intermediário">200 Mega - Intermediário</option>
+          <option value="300 Mega - Avançado">300 Mega - Avançado</option>
+          <option value="400 Mega - Empresarial">400 Mega - Empresarial</option>
+          <option value="Rural Conectado">Rural Conectado</option>
+        </select>
+      </div>
+      
+      <button type="submit">
+        <i class="fab fa-whatsapp" style="margin-right: 10px;"></i>
+        Enviar para o WhatsApp
+      </button>
     </form>
   </section>
 
   <section id="contato">
     <h2>Fale com a Gente</h2>
-    <p><strong>WhatsApp:</strong> (15) 99649-3961</p>
-    <p><strong>E-mail:</strong> marcosemphpp@gmail.com</p>
-    <p><strong>Instagram:</strong> @marcosfibra</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fab fa-whatsapp"></i>
+        <h3>WhatsApp</h3>
+        <p>(15) 99649-3961</p>
+      </div>
+      
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <h3>E-mail</h3>
+        <p>marcosemphpp@gmail.com</p>
+      </div>
+      
+      <div class="contact-item">
+        <i class="fab fa-instagram"></i>
+        <h3>Instagram</h3>
+        <p>@marcosfibra</p>
+      </div>
+    </div>
   </section>
 
   <div class="whatsapp">
     <a href="https://wa.me/5515996493961" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+      <i class="fab fa-whatsapp"></i>
     </a>
   </div>
 
   <footer>
     <p>&copy; 2025 Marcos Fibra - Todos os direitos reservados</p>
+    <p style="margin-top: 10px; opacity: 0.8;">Conectando você ao futuro</p>
   </footer>
 
   <script>
     document.getElementById("formularioContato").addEventListener("submit", function(e) {
       e.preventDefault();
-
+      
       const nome = document.getElementById("nome").value.trim();
       const bairro = document.getElementById("bairro").value.trim();
       const telefone = document.getElementById("telefone").value.trim();
       const plano = document.getElementById("plano").value;
 
       if (!nome || !bairro || !telefone || !plano) {
-        Swal.fire("Atenção!", "Por favor, preencha todos os campos.", "warning");
+        Swal.fire({
+          title: "Atenção!",
+          text: "Por favor, preencha todos os campos.",
+          icon: "warning",
+          confirmButtonColor: "#dc2626"
+        });
         return;
       }
 
@@ -232,12 +625,37 @@
                   `📛 *Nome:* ${nome}%0A` +
                   `📍 *Bairro:* ${bairro}%0A` +
                   `📞 *Telefone:* ${telefone}%0A` +
-                  `📶 *Plano Desejado:* ${plano}`;
+                  `📶 *Plano Desejado:* ${plano}%0A%0A` +
+                  `Aguardo retorno! 😊`;
 
       const link = `https://wa.me/5515996493961?text=${msg}`;
-      window.open(link, "_blank");
+      
+      Swal.fire({
+        title: "Redirecionando...",
+        text: "Você será direcionado para o WhatsApp!",
+        icon: "success",
+        timer: 2000,
+        confirmButtonColor: "#dc2626"
+      });
+      
+      setTimeout(() => {
+        window.open(link, "_blank");
+      }, 1000);
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
     });
   </script>
-
 </body>
 </html>
